@@ -3,6 +3,11 @@ package merkledag
 import "hash"
 
 
+type File interface {
+	Node
+
+	Bytes() []byte
+}
 func Add(store KVStore, node Node, h crypto.Hash) []byte {
     // 将Node中的数据保存在KVStore中
     store.Write(node.Bytes())
