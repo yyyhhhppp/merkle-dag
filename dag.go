@@ -8,6 +8,12 @@ type File interface {
 
 	Bytes() []byte
 }
+type KVStore interface {
+	Has(key []byte) (bool, error)
+	Put(key, value []byte) error
+	Get(key []byte) ([]byte, error)
+	Delete(key []byte) error
+}
 func Add(store KVStore, node Node, h crypto.Hash) []byte {
     // 将Node中的数据保存在KVStore中
     store.Write(node.Bytes())
